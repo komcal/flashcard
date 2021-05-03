@@ -1,33 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Card from '../component/Card';
-
-
-function useFetchWord(wordIndex) {
-  const [listWord, setListWord] = useState([])
-  const [ currentWord, setCurrentWord ] = useState(null)
-  const [ loading, setLoading ] = useState(false)
-  useEffect(() => {
-    if ((wordIndex === 0 && listWord.length === 0) || wordIndex >= listWord.length) {
-      setLoading(true)
-      fetch('/api/random')
-      .then((result) => result.json())
-      .then((result) => {
-        setCurrentWord(result)
-        setLoading(false)
-        setListWord([
-          ...listWord,
-          result
-        ])
-      })
-    } else {
-      setCurrentWord(listWord[wordIndex])
-    }
-  }, [wordIndex])
-  useEffect(() => {
-    setLoading(false)
-  }, [currentWord])
-  return { currentWord, loading, listWord }
-}
+import { useFetchWord } from '../lib/customUseState'
 
 const Index = () => {
   const [wordIndex, setWordIndex] = useState(0)
