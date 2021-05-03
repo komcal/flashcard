@@ -1,6 +1,37 @@
-import Card from '../component/card';
+import { useEffect, useState } from 'react';
+import Card from '../component/Card';
+
+
+function useFetchWord(wordIndex) {
+  const [listWord, setListWord] = useState([])
+  const [ currentWord, setCurrentWord ] = useState(null)
+  const [ loading, setLoading ] = useState(false)
+  useEffect(() => {
+    if ((wordIndex === 0 && listWord.length === 0) || wordIndex >= listWord.length) {
+      setLoading(true)
+      fetch('/api/random')
+      .then((result) => result.json())
+      .then((result) => {
+        setCurrentWord(result)
+        setLoading(false)
+        setListWord([
+          ...listWord,
+          result
+        ])
+      })
+    } else {
+      setCurrentWord(listWord[wordIndex])
+    }
+  }, [wordIndex])
+  useEffect(() => {
+    setLoading(false)
+  }, [currentWord])
+  return { currentWord, loading, listWord }
+}
 
 const Index = () => {
+  const [wordIndex, setWordIndex] = useState(0)
+  const { currentWord } = useFetchWord(wordIndex)
   return (
     <div className="min-h-screen flex flex-col  max-w-screen-sm mx-auto">
       <header className="p-8 flex justify-between text-lg">
@@ -8,15 +39,15 @@ const Index = () => {
         <a className="link">My Lists</a>
       </header>
       <div className="w-full flex flex-1 items-center min-h-full">
-        <div className="arrow">
+        <div className="arrow" onClick={() => wordIndex > 0 && setWordIndex(wordIndex - 1)}>
           <svg width="32" height="78" viewBox="0 0 32 78" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M29 3L3 39L29 75" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <div className="flex-1">
-            <Card />
+            <Card word={currentWord} />
         </div>
-        <div className="arrow">
+        <div className="arrow" onClick={() => setWordIndex(wordIndex + 1)}>
           <svg width="32" height="78" viewBox="0 0 32 78" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3 75L29 39L3 3" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
