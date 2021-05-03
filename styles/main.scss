@@ -26,3 +26,12 @@ html {
   @apply mx-2 cursor-pointer shadow-lg rounded-full;
 }
 
+.text-card {
+  @apply text-2xl;
+}
+
+@screen xs {
+  .text-card {
+    @apply text-3xl;
+  }
+}
