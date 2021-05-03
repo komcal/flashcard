@@ -2,7 +2,6 @@ import { useState } from "react"
 
 export default function Card(props) {
     const [ addtoMyList , setAddtoMyList ] = useState(false)
-    const [ translate , setTranslate ] = useState()
     return (
     <div className="card h-80 w-60 xs:w-64 sm:w-72 px-2 xs:px-0 word-break mx-auto bg-white rounded-xl shadow-xl flex flex-col /relative cursor-pointer"
     >
@@ -24,10 +23,10 @@ export default function Card(props) {
         </div>
 
         <div className="cardback -mt-3 h-full flex justify-center items-center"
-            onClick = {()=> setTranslate(!translate)}
+            onClick = {()=> props.setTranslate(!props.translate)}
             >
             { !props.loading && (
-                translate ?
+                props.translate ?
                 <p className="text-2xl xs:text-3xl">{props.word.th}</p>
                 :
                 <p className="text-2xl xs:text-3xl">{props.word.en}</p>  )
