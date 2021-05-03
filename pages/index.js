@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from '../components/Card';
 import { useFetchWord } from '../lib/customUseState'
 
 const Index = () => {
   const [wordIndex, setWordIndex] = useState(0)
-  const { currentWord, loading } = useFetchWord(wordIndex)
-  const [ translate , setTranslate ] = useState()
+  const { currentWord, loading, onNextWord, onPrevWord } = useFetchWord(wordIndex)
+  const [ translate , setTranslate ] = useState(false)
+  useEffect(() => {
+    setTranslate(false)
+  }, [currentWord])
 
   return (
     <div className="min-h-screen flex flex-col  max-w-screen-sm mx-auto">
@@ -14,23 +17,18 @@ const Index = () => {
         <a className="link">My Lists</a>
       </header>
       <div className="w-full flex-1 flex items-center min-h-full px-1 xs:px-2">
-        <div className="arrow" onClick={() => wordIndex > 0 && (setWordIndex(wordIndex - 1),
-                                                                setTranslate(false))}>
+        <div className="arrow" onClick={onPrevWord}>
           <svg width="32" height="78" viewBox="0 0 32 78" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M29 3L3 39L29 75" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
         <div className="w-4/6">
-            <Card word={currentWord} loading={loading} 
+            <Card word={currentWord} loading={loading}
               translate = {translate}
               setTranslate = {setTranslate}
             />
         </div>
-        <div className="arrow flex justify-end" onClick={() => {
-          if (!loading) {
-            setWordIndex(wordIndex + 1)
-            setTranslate(false)
-          }}}>
+        <div className="arrow flex justify-end" onClick={onNextWord}>
           <svg width="32" height="78" viewBox="0 0 32 78" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3 75L29 39L3 3" stroke="white" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
