@@ -20,7 +20,7 @@ html {
   }
 
 .arrow {
-  @apply cursor-pointer
+  @apply w-1/6 cursor-pointer;
 }
 .social {
   @apply mx-2 cursor-pointer shadow-lg rounded-full;
