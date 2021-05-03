@@ -4,7 +4,7 @@ import { useFetchWord } from '../lib/customUseState'
 
 const Index = () => {
   const [wordIndex, setWordIndex] = useState(0)
-  const { currentWord } = useFetchWord(wordIndex)
+  const { currentWord, loading } = useFetchWord(wordIndex)
   return (
     <div className="min-h-screen flex flex-col  max-w-screen-sm mx-auto">
       <header className="p-8 flex justify-between text-lg">
@@ -18,7 +18,7 @@ const Index = () => {
           </svg>
         </div>
         <div className="flex-1">
-            <Card word={currentWord} />
+            <Card word={currentWord} loading={loading} />
         </div>
         <div className="arrow" onClick={() => setWordIndex(wordIndex + 1)}>
           <svg width="32" height="78" viewBox="0 0 32 78" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,8 +1,13 @@
 export default function Card(props) {
     return (
     <div className="h-80 w-72 mx-auto bg-white rounded-xl shadow-xl flex items-center justify-center relative">
-        <p className="text-3xl">{props.word.en}</p>
-        <p className="text-3xl">{props.word.th}</p>
+        {
+            !props.loading &&
+            <>
+                <p className="text-3xl">{props.word.en}</p>
+                <p className="text-3xl">{props.word.th}</p>
+            </>
+        }
         <div className="absolute top-0 right-0 mr-3 mt-3">
             {/* <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="20" cy="20" r="20" fill="#9CBACE"/>
