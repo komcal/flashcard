@@ -1,3 +1,22 @@
-.test {
-  font-size: 50px;
+@import "fonts";
+
+html {
+  box-sizing: border-box;
+  background-color: #737da5;
+  font-family: Rubik;
+}
+
+.link {
+  @apply text-white px-4 tracking-wide font-thin cursor-pointer;
+}
+  .link-active {
+      @apply border-b-2 font-medium;
+  }
+
+.arrow {
+  @apply mx-4;
+}
+
+.social {
+  @apply mx-2 cursor-pointer shadow-lg rounded-full;
 }
