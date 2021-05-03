@@ -7,7 +7,7 @@ const Index = () => {
   const { currentWord, loading } = useFetchWord(wordIndex)
   return (
     <div className="min-h-screen flex flex-col  max-w-screen-sm mx-auto">
-      <header className="p-8 flex justify-between text-lg">
+      <header className="py-8 px-2 sm:p-8 flex justify-between text-xl">
         <a className="link link-active">Flashcard</a>
         <a className="link">My Lists</a>
       </header>
@@ -26,9 +26,9 @@ const Index = () => {
           </svg>
         </div>
       </div>
-      <footer className="flex flex-wrap p-8 items-center justify-between">
+      <footer className="flex flex-wrap py-8 px-2 sm:p-8 items-center justify-between">
         <div>
-            <a className="text-white">Oxford 3000 word list</a>
+            <a className="text-white cursor-pointer">Oxford 3000 word list</a>
         </div>
         <div className="flex items-center">
           <a className="social"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
