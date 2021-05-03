@@ -1,6 +1,5 @@
 import { useState } from "react"
 
-
 export default function Card(props) {
     const [ addtoMyList , setAddtoMyList ] = useState(false)
     const [ translate , setTranslate ] = useState()
@@ -30,7 +29,7 @@ export default function Card(props) {
             { !props.loading && translate ?
                 <p className="text-2xl xs:text-3xl">{props.word.th}</p>
                 :
-                <p className="text-2xl xs:text-3xl">{props.word.th}</p>  
+                <p className="text-2xl xs:text-3xl">{props.word.en}</p>  
             }
         </div>
     </div>
