@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
-import Card from '../components/Card';
-import { useFetchWord } from '../lib/customUseState'
+import { useFetchWord, useListWords } from '../lib/customUseState'
+import dynamic from 'next/dynamic'
+
+const Card = dynamic(import('../components/Card'), { ssr: false })
 
 const Index = () => {
   const [wordIndex, setWordIndex] = useState(0)
-  const { currentWord, loading, onNextWord, onPrevWord } = useFetchWord(wordIndex)
   const [ translate , setTranslate ] = useState(false)
+  const { listWord, setListWord, toggleSaveWord } = useListWords()
+  const { currentWord, loading, onNextWord, onPrevWord } = useFetchWord({ setListWord, listWord })
+
   useEffect(() => {
     setTranslate(false)
   }, [currentWord])
@@ -23,7 +27,10 @@ const Index = () => {
           </svg>
         </div>
         <div className="w-4/6">
-            <Card word={currentWord} loading={loading}
+            <Card
+              toggleSaveWord={toggleSaveWord}
+              word={currentWord}
+              loading={loading}
               translate = {translate}
               setTranslate = {setTranslate}
             />
