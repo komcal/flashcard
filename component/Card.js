@@ -27,10 +27,10 @@ export default function Card(props) {
         <div className="cardback -mt-3 h-full flex justify-center items-center"
             onClick = {()=> setTranslate(!translate)}
             >
-            { translate ?
-                <p className="text-2xl xs:text-3xl">การตัดสินใจ</p>
+            { !props.loading && translate ?
+                <p className="text-2xl xs:text-3xl">{props.word.th}</p>
                 :
-                <p className="text-2xl xs:text-3xl">decision-making</p>  
+                <p className="text-2xl xs:text-3xl">{props.word.th}</p>  
             }
         </div>
     </div>

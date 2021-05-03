@@ -1,24 +1,26 @@
+import { useState } from 'react';
 import Card from '../component/Card';
+import { useFetchWord } from '../lib/customUseState'
 
 const Index = () => {
+  const [wordIndex, setWordIndex] = useState(0)
+  const { currentWord, loading } = useFetchWord(wordIndex)
   return (
     <div className="min-h-screen flex flex-col  max-w-screen-sm mx-auto">
       <header className="py-8 px-2 sm:p-8 flex justify-between text-xl">
         <a className="link link-active">Flashcard</a>
         <a className="link">My Lists</a>
       </header>
-      <div className="w-full flex flex-1 items-center min-h-full xs:px-2">
-        <div className="cursor-pointer mr-1">
+      <div className="w-full flex flex-1 items-center min-h-full">
+        <div className="arrow" onClick={() => wordIndex > 0 && setWordIndex(wordIndex - 1)}>
           <svg width="32" height="78" viewBox="0 0 32 78" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M29 3L3 39L29 75" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <div className="flex-1">
-            <Card 
-            
-            />
+            <Card word={currentWord} loading={loading} />
         </div>
-        <div className="cursor-pointer ml-1">
+        <div className="arrow" onClick={() => setWordIndex(wordIndex + 1)}>
           <svg width="32" height="78" viewBox="0 0 32 78" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3 75L29 39L3 3" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
