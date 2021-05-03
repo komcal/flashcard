@@ -18,7 +18,7 @@ export default function CardInner(props) {
                         </svg>
                     }
                 </div>
-                <div className="px-2 -mt-3 h-5/6 flex justify-center items-center"
+                <div className="text-card-container"
                     onClick={() => props.setTranslate(!props.translate)}
                 >
                 <p className="text-card">{props.word}</p>
