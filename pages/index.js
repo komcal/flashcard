@@ -1,30 +1,32 @@
-import Card from '../component/card';
+import Card from '../component/Card';
 
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col  max-w-screen-sm mx-auto">
-      <header className="p-8 flex justify-between text-lg">
+      <header className="py-8 px-2 sm:p-8 flex justify-between text-xl">
         <a className="link link-active">Flashcard</a>
         <a className="link">My Lists</a>
       </header>
-      <div className="w-full flex flex-1 items-center min-h-full">
-        <div className="arrow">
+      <div className="w-full flex flex-1 items-center min-h-full xs:px-2">
+        <div className="cursor-pointer mr-1">
           <svg width="32" height="78" viewBox="0 0 32 78" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M29 3L3 39L29 75" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <div className="flex-1">
-            <Card />
+            <Card 
+            
+            />
         </div>
-        <div className="arrow">
+        <div className="cursor-pointer ml-1">
           <svg width="32" height="78" viewBox="0 0 32 78" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3 75L29 39L3 3" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
       </div>
-      <footer className="flex flex-wrap p-8 items-center justify-between">
+      <footer className="flex flex-wrap py-8 px-2 sm:p-8 items-center justify-between">
         <div>
-            <a className="text-white">Oxford 3000 word list</a>
+            <a className="text-white cursor-pointer">Oxford 3000 word list</a>
         </div>
         <div className="flex items-center">
           <a className="social"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
